@@ -22,7 +22,10 @@ const getProductById = async (req, res, next) => {
 };
 const unsoldProducts = async (req, res, next) => {
   try {
-    const products = await productModel.find({ isSold: false });
+    const products = await productModel.find({
+      isSold: false,
+      sellerId: { $ne: req.params.id },
+    });
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
     res.status(400).json({ message: err });
@@ -48,9 +51,13 @@ const addProduct = async (req, res, next) => {
   try {
     const { name, description, price, location, sellerId, productId } =
       req.body;
-    // let images = req.files;
-    // console.log(images);
-    let images = req.files.map((a) => a.path);
+    console.log(req.body);
+    let imagess = req.files;
+    console.log(imagess);
+    let images = req.files.map((a) =>
+      ("" + a.path).slice(7, ("" + a.path).length)
+    );
+    console.log(images);
     const product = new productModel({
       name,
       description,

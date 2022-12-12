@@ -7,7 +7,7 @@ Router.get("/get_all_products", Controller.Product.getAllProducts);
 
 Router.get("/get_product_by_id/:id", Controller.Product.getProductById);
 
-Router.get("/unsold_products", Controller.Product.unsoldProducts);
+Router.get("/unsold_products/:id", Controller.Product.unsoldProducts);
 
 Router.get("/userPosted_products/:id", Controller.Product.userPostedProducts);
 
