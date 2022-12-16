@@ -1,0 +1,12 @@
+services:
+  app:
+    image: node:slim
+    command: sh -c "npm i && npm run start"
+    ports: -3030:3030
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MONGODB_URI: mongodb+srv://xpainx:1234@cluster0.3bcpj.mongodb.net/?retryWrites=true&w=majorit
+      PORT: 3030
+      JWT_SECRET: guhya
