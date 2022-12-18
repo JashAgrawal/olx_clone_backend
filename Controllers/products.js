@@ -89,7 +89,7 @@ const sellProduct = async (req, res, next) => {
       {
         _id: req.params.productId,
       },
-      { buyerId: req.body.buyerId, isSold: true }
+      { buyerId: req.body.buyerId, isSold: req.body.sold || true }
     );
     res.json({ message: "Product Sold successfully" });
   } catch (err) {

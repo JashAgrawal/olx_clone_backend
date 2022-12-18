@@ -27,6 +27,7 @@ const signup = async (req, res, next) => {
         email: savedUser.email,
         name: savedUser.name,
         userId: savedUser._id,
+        userToken: Token,
       },
     });
   } catch (err) {
@@ -54,7 +55,7 @@ const login = async (req, res, next) => {
             email: user.email,
             name: user.name,
             userId: user._id,
-            usertoken: Token,
+            userToken: Token,
           },
         });
       } else {

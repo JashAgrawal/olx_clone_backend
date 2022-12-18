@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./Config/index");
 const routes = require("./Routes");
 const app = express();
+const authenticateRequest = require("./MiddleWare/auth");
 
 //connecting DB
 connectDB();
@@ -16,6 +17,7 @@ app.use(morgan("tiny"));
 app.use(cors("*"));
 app.use(express.json());
 app.use(express.static("Public"));
+app.all("*", authenticateRequest);
 app.use("/Auth", routes.userRoutes);
 app.use("/Product", routes.productRoutes);
 app.use((req, res, next) => {
