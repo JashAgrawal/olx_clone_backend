@@ -9,7 +9,7 @@ const getAllProducts = async (req, res, next) => {
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
     console.log(err);
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const getProductById = async (req, res, next) => {
@@ -17,7 +17,7 @@ const getProductById = async (req, res, next) => {
     const products = await productModel.findById(req.params.id);
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const unsoldProducts = async (req, res, next) => {
@@ -28,7 +28,7 @@ const unsoldProducts = async (req, res, next) => {
     });
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const userPostedProducts = async (req, res, next) => {
@@ -36,7 +36,7 @@ const userPostedProducts = async (req, res, next) => {
     const products = await productModel.find({ sellerId: req.params.id });
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const userPurchasedProducts = async (req, res, next) => {
@@ -44,7 +44,7 @@ const userPurchasedProducts = async (req, res, next) => {
     const products = await productModel.find({ buyerId: req.params.id });
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const addProduct = async (req, res, next) => {
@@ -80,7 +80,7 @@ const deleteProduct = async (req, res, next) => {
     const products = await productModel.findByIdAndRemove(req.params.productId);
     res.json({ message: "Product delete successfully" });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const sellProduct = async (req, res, next) => {
@@ -93,7 +93,7 @@ const sellProduct = async (req, res, next) => {
     );
     res.json({ message: "Product Sold successfully" });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 

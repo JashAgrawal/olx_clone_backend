@@ -32,7 +32,7 @@ const signup = async (req, res, next) => {
     });
   } catch (err) {
     // console.log(err);
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const login = async (req, res, next) => {
@@ -66,7 +66,7 @@ const login = async (req, res, next) => {
     }
   } catch (err) {
     console.log(err);
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const forgotPassword = (req, res, next) => {
