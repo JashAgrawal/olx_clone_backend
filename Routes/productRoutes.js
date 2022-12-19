@@ -8,7 +8,7 @@ Router.get("/get_all_products", Controller.Product.getAllProducts);
 
 Router.get("/get_product_by_id/:id", Controller.Product.getProductById);
 
-Router.get("/unsold_products/:id", Controller.Product.unsoldProducts);
+Router.post("/unsold_products", Controller.Product.unsoldProducts);
 
 Router.get(
   "/userPosted_products/:id",
@@ -24,7 +24,7 @@ Router.get(
 
 Router.post(
   "/add_product",
-  upload.array("images", 12),
+  [upload.array("images", 12), authenticateRequest],
   Controller.Product.addProduct
 );
 

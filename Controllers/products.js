@@ -24,7 +24,7 @@ const unsoldProducts = async (req, res, next) => {
   try {
     const products = await productModel.find({
       isSold: false,
-      sellerId: { $ne: req.params.id },
+      sellerId: { $ne: req.body.id ? req.body.id : null },
     });
     res.json({ message: "Products Fetched successfully", products });
   } catch (err) {
@@ -72,7 +72,7 @@ const addProduct = async (req, res, next) => {
       data: savedProduct,
     });
   } catch (err) {
-    res.status(400).json({ message: err });
+    res.status(400).json({ message: err, error: true });
   }
 };
 const deleteProduct = async (req, res, next) => {
