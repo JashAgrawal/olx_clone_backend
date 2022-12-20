@@ -3,7 +3,7 @@ const path = require("path");
 //multerSetup
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./public/uploads");
+    callback(null, "./Public/uploads/");
   },
   filename: function (req, file, callback) {
     callback(null, "" + Date.now() + path.extname(file.originalname));
